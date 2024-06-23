@@ -1,7 +1,9 @@
 import "./index.css";
 
-function App() {
-  return <div className="Weather app"></div>;
+export default function App() {
+  return (
+    <div className="Weather app">
+      <h1>weather application</h1>
+    </div>
+  );
 }
-
-export default App;
