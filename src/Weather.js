@@ -1,25 +1,26 @@
 import React, { useState } from "react";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
 import "./Weather.css";
 
-export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
+export default function Weather(props) {
+  const [weatherData, setWeatherData] = useState({ ready: false });
+
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
+      ready: true,
       temperature: response.data.main.temp,
-      feels: response.data.main.feels_like,
       humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      icon: response.data.weather[0].icon,
+      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png", //response.data.weather[0].icon,
       wind: response.data.wind.speed,
       city: response.data.name,
     });
-    setReady(true);
   }
 
-  if (ready) {
+  if (weatherData.ready) {
     return (
       <div className="Weather-wrapper">
         <form>
@@ -40,21 +41,22 @@ export default function Weather() {
         <div className="row Weather-information">
           <div className="col-4 align-items-center">
             <span className="temperature">
-              {Math.round(weatherData.temperature)}
+              {Math.round(weatherData.temperature)}°C
             </span>
-            <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png" />
+            <img src={weatherData.iconUrl} alt={weatherData.description} />
           </div>
           <div className="col-4 align-items-center">
             <ul>
-              <li>Monday 8pm</li>
-              <li>{weatherData.description}</li>
+              <li>
+                <FormattedDate date={weatherData.date} />
+              </li>
+              <li className="text-capitalize">{weatherData.description}</li>
             </ul>
           </div>
           <div className="col-4 align-items-center">
             <ul>
-              <li>Feels like: {weatherData.feels} </li>
-              <li>Humidity </li>
-              <li>Wind </li>
+              <li>Humidity:{weatherData.humidity}%</li>
+              <li>Wind:{weatherData.wind}km/h </li>
             </ul>
           </div>
         </div>
@@ -78,8 +80,7 @@ export default function Weather() {
     );
   } else {
     const apiKey = "515c9ddbeb3cda9061acfab71031839e";
-    let city = "Oslo";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
     return "Loading...";
   }
