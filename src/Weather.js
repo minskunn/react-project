@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import FormattedDate from "./FormattedDate";
 import WeatherInfo from "./WeatherInfo";
 import "./Weather.css";
 
@@ -16,7 +15,7 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
-      iconUrl: "https://ssl.gstatic.com/onebox/weather/64/cloudy.png", //response.data.weather[0].icon,
+      icon: response.data.weather[0].icon,
       wind: response.data.wind.speed,
       city: response.data.name,
     });
@@ -60,15 +59,27 @@ export default function Weather(props) {
         <footer>
           <p>
             This project was coded by
-            <a href="https://github.com/minskunn" target="_blank">
+            <a
+              href="https://github.com/minskunn"
+              target="_blank"
+              rel="noreferrer"
+            >
               Minna K
             </a>{" "}
             and is
-            <a href="https://github.com/minskunn/" target="_blank">
+            <a
+              href="https://github.com/minskunn/"
+              target="_blank"
+              rel="noreferrer"
+            >
               is open-sourced on GitHub
             </a>
             and
-            <a href="https://github.com/minskunn/" target="_blank">
+            <a
+              href="https://github.com/minskunn/"
+              target="_blank"
+              rel="noreferrer"
+            >
               hosted on Netlify
             </a>
           </p>

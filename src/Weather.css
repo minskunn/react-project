@@ -27,6 +27,16 @@
   margin-top: 25px;
 }
 
+.Weather canvas {
+  margin-right: 5px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
 ul {
   list-style: none;
+}
+
+.temperature {
+  font-size: 40px;
 }
