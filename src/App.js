@@ -4,9 +4,37 @@ import "./index.css";
 
 export default function App() {
   return (
-    <div className="Weather-app">
+    <div className="App">
       <div className="container">
-        <Weather defaultCity="Helsinki" />
+        <Weather defaultCity="Singapore" />
+        <footer>
+          <p>
+            This project was coded by
+            <a
+              href="https://github.com/minskunn"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Minna K
+            </a>{" "}
+            and is
+            <a
+              href="https://github.com/minskunn/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              is open-sourced on GitHub
+            </a>
+            and
+            <a
+              href="https://github.com/minskunn/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              hosted on Netlify
+            </a>
+          </p>
+        </footer>
       </div>
     </div>
   );

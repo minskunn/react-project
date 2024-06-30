@@ -38,5 +38,9 @@ ul {
 }
 
 .temperature {
-  font-size: 40px;
+  font-size: 30px;
+}
+
+.unit {
+  font-size: 15px;
 }

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import "./Weather.css";
 
 export default function Weather(props) {
@@ -9,6 +12,7 @@ export default function Weather(props) {
 
   function handleResponse(response) {
     console.log(response.data);
+
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
@@ -27,6 +31,12 @@ export default function Weather(props) {
     axios.get(apiUrl).then(handleResponse);
   }
 
+  function searchLocation(lat, lon) {
+    const apiKey = "515c9ddbeb3cda9061acfab71031839e";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     search();
@@ -36,54 +46,41 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
+  function handleLocationClick() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      searchLocation(position.coords.latitude, position.coords.longitude);
+    });
+  }
+
   if (weatherData.ready) {
     return (
-      <div className="Weather-wrapper">
+      <div className="Weather">
         <form onSubmit={handleSubmit}>
           <div className="row">
             <div className="col-9">
               <input
                 type="search"
-                placeholder="Search for a city.."
+                placeholder="Enter a city here"
                 className="form-control Search-input"
                 onChange={handleCityChange}
               />
             </div>
             <div className="col-3 p-0">
-              <input type="submit" value="Search" className="btn btn-primary" />
+              <button type="submit" className="btn-icon">
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </button>
+              <button
+                type="button"
+                className="btn-icon"
+                onClick={handleLocationClick}
+              >
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+              </button>
             </div>
           </div>
-          <h1>{weatherData.city}</h1>
         </form>
+        <h1>{weatherData.city}</h1>
         <WeatherInfo data={weatherData} />
-        <footer>
-          <p>
-            This project was coded by
-            <a
-              href="https://github.com/minskunn"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Minna K
-            </a>{" "}
-            and is
-            <a
-              href="https://github.com/minskunn/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              is open-sourced on GitHub
-            </a>
-            and
-            <a
-              href="https://github.com/minskunn/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              hosted on Netlify
-            </a>
-          </p>
-        </footer>
       </div>
     );
   } else {
