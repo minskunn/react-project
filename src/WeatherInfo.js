@@ -6,20 +6,25 @@ import "./Weather.css";
 
 export default function WeatherInfo(props) {
   return (
-    <div className="row Weather-information">
-      <div className="col-6 align-items-center">
-        <span className="currentTime">
-          Today | <FormattedDate date={props.data.date} />
-        </span>
-        <div className="text-capitalize">{props.data.description}</div>
-        <WeatherIcon code={props.data.icon} size={25} />
-        <WeatherTemperature celsius={props.data.temperature} />
-      </div>
-      <div className="col-6 align-items-center">
-        <ul>
-          <li>Humidity: {props.data.humidity} %</li>
-          <li>Wind: {props.data.wind} km/h </li>
-        </ul>
+    <div className="Weather-information">
+      <div className="row">
+        <div className="col-md-12">
+          <h1 className="city-name">
+            {props.city} <WeatherTemperature celsius={props.data.temperature} />
+          </h1>
+        </div>
+        <div className="col-md-6 Weather-info-left">
+          <div className="currentTime">
+            Today | <FormattedDate date={props.data.date} />
+          </div>
+          <div className="text-capitalize">{props.data.description}</div>
+        </div>
+        <div className="col-md-6 Weather-info-right">
+          <ul>
+            <li>Humidity: {props.data.humidity} %</li>
+            <li>Wind: {props.data.wind} mps </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

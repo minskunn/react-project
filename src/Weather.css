@@ -1,30 +1,30 @@
-.Weather-wrapper {
-  text-align: center;
-  margin: 150px 100px 150px 100px;
-  font-family: "Cerebri-Sans", Helvetica, Arial, sans-serif;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0px 30px 50px rgba(65, 50, 100, 0.08);
-}
-
-.Weather-wrapper form {
+.Weather form {
   margin-top: 40px;
   border-bottom: 1px solid #f9f7fe;
   padding-bottom: 30px;
 }
 
-.Weather-wrapper .btn {
-  background: #885df1;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 15px 0;
+.btn-icon {
+  background: none;
   border: none;
-  height: 50px;
-  width: 100px;
+  padding: 10px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  color: #35a56d;
+  font-size: 20px;
+  display: inline-block;
 }
 
 .Weather-information {
   margin-top: 25px;
+}
+
+.WeatherForecastDay {
+  padding: 10px;
+}
+
+.WeatherForecast-temp-max {
+  font-weight: bold;
 }
 
 .Weather canvas {
@@ -42,5 +42,6 @@ ul {
 }
 
 .unit {
-  font-size: 15px;
+  font-size: 14px;
+  position: absolute;
 }

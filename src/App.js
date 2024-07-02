@@ -6,32 +6,26 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        <Weather defaultCity="Singapore" />
+        <Weather defaultCity="Oslo" />
         <footer>
           <p>
-            This project was coded by
+            This project was coded by &nbsp;
             <a
               href="https://github.com/minskunn"
               target="_blank"
               rel="noreferrer"
+              className="footer-link"
             >
               Minna K
             </a>{" "}
-            and is
+            and is open-sourced on
             <a
               href="https://github.com/minskunn/"
               target="_blank"
               rel="noreferrer"
+              className="footer-link"
             >
-              is open-sourced on GitHub
-            </a>
-            and
-            <a
-              href="https://github.com/minskunn/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              hosted on Netlify
+              &nbsp; GitHub
             </a>
           </p>
         </footer>

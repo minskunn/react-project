@@ -1,6 +1,20 @@
-h1 {
-  font-size: 30px;
-  margin-top: 40px;
+body {
+  background-color: #ffffff;
+  color: #35a56d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #e6e8ff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
 }
 
 .App {
@@ -9,7 +23,23 @@ h1 {
   margin: 30px auto;
 }
 
+h1 {
+  font-size: 28px;
+  color: #35a56d;
+}
+
 .App footer {
   font-size: 11px;
   margin: 10px 0;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.footer-link {
+  color: #35a56d;
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
 }
